@@ -12,4 +12,8 @@ map <Leader>b :MiniBufExplorer<cr>
 let g:miniBufExplMapWindowNavVim = 1
 
 
+""""""""""""""""""""""""""""""
+" taglist
+""""""""""""""""""""""""""""""
+let Tlist_Use_Right_Window = 1
 
