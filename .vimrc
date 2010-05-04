@@ -77,4 +77,8 @@ if has("macunix") || has("gui_macvim")
   let Grep_Xargs_Options = '-0'
 endif
 
-
+""""""""""""""""""""""""""""""
+" NERDTree
+""""""""""""""""""""""""""""""
+map <Leader>f :NERDTreeToggle<cr>
+ 
