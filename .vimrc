@@ -34,6 +34,9 @@ set ruler		      " show the cursor position all the time
 set showcmd		    " display incomplete commands
 set incsearch	  	" do incremental searching
 set laststatus=2  " Always display the status line
+set scrolloff=7   " minimal screen lines above/below cursor
+set cmdheight=2   " use 1 screen lines for command-line
+set lazyredraw    " redraw while executing macros (for qbuf)
 
 " Numbers
 set number
