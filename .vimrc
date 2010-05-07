@@ -2,13 +2,24 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+
+" mapping
 let mapleader="\\"
 let g:mapleader="\\"
+" Hide search highlighting
+map <Leader>h :set invhls <CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
 set backupdir=$VIMDATA/backup
 set directory=$VIMDATA/tmp
+
+" NOT WROKING
+" Maps autocomplete to tab
+" imap <Tab> <C-N>
+" Snippets are activated by Shift+Tab
+" let g:snippetsEmu_key = "<S-Tab>"
+
 
 " full screen is working on macvim
 if has("gui_running")
