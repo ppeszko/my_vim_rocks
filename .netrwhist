@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Volumes/source/projects/rails-app'
+let g:netrw_dirhist_2='/Users/patryk.peszko/.vim'
+let g:netrw_dirhist_3='/Volumes/source/projects/rails-app'
+let g:netrw_dirhist_4='/Volumes/source/projects/rails-app/engines/corporate_pages'
+let g:netrw_dirhist_5='/Volumes/source/projects/rails-app'
+let g:netrw_dirhist_6='/Volumes/source/projects/rails-app/engines/corporate_pages'

@@ -8,6 +8,7 @@ let mapleader="\\"
 let g:mapleader="\\"
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
+map <leader>t :FuzzyFinderTextMate<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
