@@ -97,5 +97,5 @@ endif
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
-map <Leader>f :NERDTreeToggle<cr>
+map <Leader>e :NERDTreeToggle<cr>
  
