@@ -85,7 +85,7 @@ let Tlist_Use_Right_Window = 1
 """"""""""""""""""""""""""""""
 " grep.vim
 """"""""""""""""""""""""""""""
-let Grep_Skip_Dirs = '.svn .git tmp'
+let Grep_Skip_Dirs = '.svn .git tmp .bundle'
 let Grep_Skip_Files = 'tags .tmtags ctags'
 let Grep_Default_Filelist = '*.rb *.erb'
 
