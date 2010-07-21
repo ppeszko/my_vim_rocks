@@ -59,6 +59,7 @@ set number
 set completeopt=longest,menu
 set wildmode=list:longest,list:full " adds popup menue for cmd completion
 set complete=.,t
+set ofu=syntaxcomplete#Complete
 
 " set statusline=%f\ %2*%m\ %1*%h%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}\ %{getfperm(@%)}]\ 0x%B\ %12.(%c:%l/%L%)
 
