@@ -73,9 +73,21 @@ let Tlist_Ctags_Cmd = '/opt/local/bin/ctags'
 """"""""""""""""""""""""""""""
 " miniBufferExplorer
 """"""""""""""""""""""""""""""
-let g:miniBufExplMapCTabSwitchBufs = 1
-map <Leader>b :MiniBufExplorer<cr>
-let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"map <Leader>b :MiniBufExplorer<cr>
+"let g:miniBufExplMapWindowNavVim = 1
+
+""""""""""""""""""""""""""""""
+" QuickBuffer
+""""""""""""""""""""""""""""""
+noremap <C-Down>  <C-W>j
+noremap <C-Up>    <C-W>k
+noremap <C-Left>  <C-W>h
+noremap <C-Right> <C-W>l
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 
 
 """"""""""""""""""""""""""""""
