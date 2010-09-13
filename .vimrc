@@ -32,6 +32,15 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" show whitespaces
+set listchars=tab:>−,trail:−
+"map <Leader>sw :set list<CR>
+"map <Leader>nw :set nolist<CR>
+highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+nnoremap <Leader>sw :match ExtraWhitespace /\t/<CR>
+nnoremap <Leader>nw :match<CR>
+
+
 filetype plugin indent on
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -49,6 +58,7 @@ set laststatus=2  " Always display the status line
 set scrolloff=7   " minimal screen lines above/below cursor
 set cmdheight=2   " use 1 screen lines for command-line
 set lazyredraw    " redraw while executing macros (for qbuf)
+set guifont=Menlo:h12
 
 " Numbers
 set number
