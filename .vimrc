@@ -8,7 +8,8 @@ let mapleader="\\"
 let g:mapleader="\\"
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
-map <leader>t :FuzzyFinderTextMate<CR>
+"map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>t :CommandT<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
@@ -112,6 +113,9 @@ let Tlist_Use_Right_Window = 1
 let Grep_Skip_Dirs = '.svn .git tmp .bundle'
 let Grep_Skip_Files = 'tags .tmtags ctags'
 let Grep_Default_Filelist = '*.rb *.erb'
+
+" making command-t faster
+set wildignore+=*.o,*.obj,.git
 
 let Grep_Default_Options = '-i'
 if has("macunix") || has("gui_macvim")
