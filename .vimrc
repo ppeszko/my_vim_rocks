@@ -26,6 +26,7 @@ set directory=$VIMDATA/tmp
 " full screen is working on macvim
 if has("gui_running")
   set fuoptions=maxvert,maxhorz
+  set guioptions-=T
 endif
 
 " indention
@@ -116,6 +117,7 @@ let Grep_Default_Filelist = '*.rb *.erb'
 
 " making command-t faster
 set wildignore+=*.o,*.obj,.git
+let g:CommandTMaxHeight=10
 
 let Grep_Default_Options = '-i'
 if has("macunix") || has("gui_macvim")
