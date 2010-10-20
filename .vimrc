@@ -1,7 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-
+filetype plugin indent on
 
 " mapping
 let mapleader="\\"
@@ -10,6 +10,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
+map <leader>c :!ruby -c %<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
@@ -33,6 +34,7 @@ endif
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set autoindent
 
 " show whitespaces
 set listchars=tab:>−,trail:−
@@ -41,9 +43,6 @@ set listchars=tab:>−,trail:−
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 nnoremap <Leader>sw :match ExtraWhitespace /\t/<CR>
 nnoremap <Leader>nw :match<CR>
-
-
-filetype plugin indent on
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -123,6 +122,7 @@ let Grep_Default_Options = '-i'
 if has("macunix") || has("gui_macvim")
   let Grep_Xargs_Options = '-0'
 endif
+map <Leader>r :Rgrep<cr>
 
 """"""""""""""""""""""""""""""
 " NERDTree
