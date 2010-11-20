@@ -36,6 +36,9 @@ set shiftwidth=2
 set expandtab
 set autoindent
 
+" colors
+colorscheme molokai
+
 " show whitespaces
 if has("gui_running")
   set listchars=tab:>−,trail:−
