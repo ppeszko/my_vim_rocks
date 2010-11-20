@@ -37,7 +37,9 @@ set expandtab
 set autoindent
 
 " show whitespaces
-set listchars=tab:>−,trail:−
+if has("gui_running")
+  set listchars=tab:>−,trail:−
+endif
 "map <Leader>sw :set list<CR>
 "map <Leader>nw :set nolist<CR>
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
