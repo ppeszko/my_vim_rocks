@@ -10,6 +10,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
+map <leader>y :CommandTFlush<CR>
 map <leader>c :!ruby -c %<CR>
 
 " saving swp files in the tmp directory
