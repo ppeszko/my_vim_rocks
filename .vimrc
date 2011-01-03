@@ -10,6 +10,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
+map <leader>y :CommandTFlush<CR>
 map <leader>c :!ruby -c %<CR>
 
 " saving swp files in the tmp directory
@@ -64,7 +65,7 @@ set laststatus=2  " Always display the status line
 set scrolloff=7   " minimal screen lines above/below cursor
 set cmdheight=2   " use 1 screen lines for command-line
 set lazyredraw    " redraw while executing macros (for qbuf)
-set guifont=Menlo:h12
+set guifont=Inconsolata:h12
 
 " Numbers
 set number
