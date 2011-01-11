@@ -122,7 +122,7 @@ let Grep_Default_Filelist = '*.rb *.erb'
 
 " making command-t faster
 set wildignore+=*.o,*.obj,.git
-let g:CommandTMaxHeight=10
+let g:CommandTMaxHeight=15
 
 let Grep_Default_Options = '-i'
 if has("macunix") || has("gui_macvim")
