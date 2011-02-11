@@ -74,8 +74,8 @@ set number
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
 set wildmenu
-set completeopt=longest,menu
-set wildmode=list:longest,list:full " adds popup menue for cmd completion
+set completeopt=menu
+set wildmode=list:full " adds popup menue for cmd completion
 set complete=.,t
 set ofu=syntaxcomplete#Complete
 
