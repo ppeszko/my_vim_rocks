@@ -38,7 +38,8 @@ set expandtab
 set autoindent
 
 " colors
-colorscheme molokai
+" colorscheme molokai
+colorscheme github
 
 " show whitespaces
 if has("gui_running")
@@ -135,3 +136,4 @@ map <Leader>r :Rgrep<cr>
 """"""""""""""""""""""""""""""
 map <Leader>e :NERDTreeToggle<cr>
  
+autocmd BufWritePre * :%s/\s\+$//e
