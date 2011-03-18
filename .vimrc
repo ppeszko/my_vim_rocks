@@ -12,6 +12,7 @@ map <Leader>h :set invhls <CR>
 map <leader>t :CommandT<CR>
 map <leader>y :CommandTFlush<CR>
 map <leader>c :!ruby -c %<CR>
+map <leader>a :TlistToggle<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
@@ -87,7 +88,8 @@ set ignorecase
 set smartcase
 set paste
 
-let Tlist_Ctags_Cmd = '/opt/local/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_WinWidth = 70
 
 """"""""""""""""""""""""""""""
 " miniBufferExplorer
@@ -135,5 +137,5 @@ map <Leader>r :Rgrep<cr>
 " NERDTree
 """"""""""""""""""""""""""""""
 map <Leader>e :NERDTreeToggle<cr>
- 
+
 autocmd BufWritePre * :%s/\s\+$//e
