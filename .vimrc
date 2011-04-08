@@ -40,21 +40,8 @@ set autoindent
 
 " colors
 " colorscheme molokai
-"colorscheme github
-
-function! ToggleBackground()
-    if (g:solarized_style=="dark")
-    let g:solarized_style="light"
-    colorscheme solarized
-else
-    let g:solarized_style="dark"
-    colorscheme solarized
-endif
-endfunction
-command! Togbg call ToggleBackground()
-nnoremap <F5> :call ToggleBackground()<CR>
-inoremap <F5> <ESC>:call ToggleBackground()<CR>a
-vnoremap <F5> <ESC>:call ToggleBackground()<CR>
+" colorscheme github
+colorscheme solarized
 
 " show whitespaces
 if has("gui_running")
