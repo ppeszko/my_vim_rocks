@@ -102,7 +102,7 @@ set ignorecase
 set smartcase
 set paste
 
-"let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_WinWidth = 70
 let Tlist_Show_One_File = 1
 
