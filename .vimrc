@@ -42,6 +42,7 @@ set autoindent
 " colorscheme molokai
 " colorscheme github
 colorscheme solarized
+call togglebg#map("<F5>")
 
 " show whitespaces
 if has("gui_running")
