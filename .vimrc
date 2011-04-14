@@ -57,7 +57,7 @@ nnoremap <Leader>nw :match<CR>
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-  set hlsearch
+  "set hlsearch
 endif
 
 set history=100		" keep 50 lines of command line history
