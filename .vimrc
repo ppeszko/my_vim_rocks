@@ -11,7 +11,7 @@ map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
 map <leader>y :CommandTFlush<CR>
-map <leader>c :!ruby -c %<CR>
+map <leader>c :!/Users/comes/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
 
 " saving swp files in the tmp directory
