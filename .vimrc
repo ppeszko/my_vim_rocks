@@ -41,8 +41,9 @@ set autoindent
 " colors
 " colorscheme molokai
 " colorscheme github
+syntax enable
 colorscheme solarized
-"call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 map <Leader>b :set background=dark<CR>
 map <Leader>v :set background=light<CR>
 
@@ -61,7 +62,7 @@ nnoremap <Leader>nw :match<CR>
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-  "set hlsearch
+  set hlsearch
 endif
 
 set history=100		" keep 50 lines of command line history
@@ -72,7 +73,7 @@ set laststatus=2  " Always display the status line
 set scrolloff=7   " minimal screen lines above/below cursor
 set cmdheight=2   " use 1 screen lines for command-line
 set lazyredraw    " redraw while executing macros (for qbuf)
-set guifont=Inconsolata:h12
+set guifont=Inconsolata:h14
 
 " Numbers
 set number
