@@ -38,6 +38,9 @@ set shiftwidth=2
 set expandtab
 set autoindent
 
+" highlights all matches
+set hlsearch
+
 " colors
 " colorscheme molokai
 " colorscheme github
@@ -62,7 +65,6 @@ nnoremap <Leader>nw :match<CR>
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-  set hlsearch
 endif
 
 set history=100		" keep 50 lines of command line history
