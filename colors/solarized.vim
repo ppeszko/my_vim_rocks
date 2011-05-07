@@ -4,7 +4,7 @@
 "           (see this url for latest release & screenshots)
 " License:  OSI approved MIT license (see end of this file)
 " Created:  In the middle of the night
-" Modified: 2011 May 01
+" Modified: 2011 May 05
 "
 " Usage "{{{
 "
@@ -217,8 +217,9 @@ call s:SetOption("underline",1)
 call s:SetOption("italic",1) " note that we need to override this later if the terminal doesn't support
 call s:SetOption("termcolors",16)
 call s:SetOption("contrast","normal")
-call s:SetOption("visibility","low")
+call s:SetOption("visibility","normal")
 call s:SetOption("diffmode","normal")
+call s:SetOption("hitrail",0)
 call s:SetOption("menu",1)
 
 "}}}
@@ -409,10 +410,12 @@ endif
 "}}}
 " Overrides dependent on user specified values and environment "{{{
 " ---------------------------------------------------------------------
-if g:solarized_bold == 0
+if (g:solarized_bold == 0 || &t_Co == 8 )
     let s:b           = ""
+    let s:bb          = ",bold"
 else
     let s:b           = ",bold"
+    let s:bb          = ""
 endif
 
 if g:solarized_underline == 0
@@ -483,13 +486,8 @@ exe "let s:fmt_revb     = ' ".s:vmode."=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'"
 " revbb (reverse bold for bright colors) is only set to actual bold in low 
 " color terminals (t_co=8, such as OS X Terminal.app) and should only be used 
 " with colors 8-15.
-if ( has("gui_running") || &t_Co > 8 )
-exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.        " term=NONE".s:r.    "'"
-exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:u.    " term=NONE".s:r.s:u."'"
-else
-exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.s:b.    " term=NONE".s:r.s:b."'"
-exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:b.s:u." term=NONE".s:r.s:b.s:u."'"
-endif
+exe "let s:fmt_revbb    = ' ".s:vmode."=NONE".s:r.s:bb.   " term=NONE".s:r.s:bb."'"
+exe "let s:fmt_revbbu   = ' ".s:vmode."=NONE".s:r.s:bb.s:u." term=NONE".s:r.s:bb.s:u."'"
 
 if has("gui_running")
     exe "let s:sp_none      = ' guisp=".s:none   ."'"
@@ -602,13 +600,13 @@ exe "hi! Todo"           .s:fmt_bold   .s:fg_magenta.s:bg_none
 " ---------------------------------------------------------------------
 if      (g:solarized_visibility=="high")
     exe "hi! SpecialKey" .s:fmt_revr   .s:fg_red    .s:bg_none
-    exe "hi! NonText"    .s:fmt_bold   .s:fg_base1  .s:bg_none
+    exe "hi! NonText"    .s:fmt_bold   .s:fg_red    .s:bg_none
 elseif  (g:solarized_visibility=="low")
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base02 .s:bg_none
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base02 .s:bg_none
 else
-    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_red    .s:bg_none
-    exe "hi! NonText"    .s:fmt_bold   .s:fg_base01 .s:bg_none
+    exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_base02
+    exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 endif
 exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base02 .s:fmt_revbb
 exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base00 .s:bg_base02 .s:fmt_revbb
@@ -638,15 +636,22 @@ exe "hi! DiffChange"     .s:fmt_revr   .s:fg_yellow .s:bg_none
 exe "hi! DiffDelete"     .s:fmt_revr   .s:fg_red    .s:bg_none
 exe "hi! DiffText"       .s:fmt_revr   .s:fg_blue   .s:bg_none
 elseif  (g:solarized_diffmode=="low")
-exe "hi! DiffAdd"        .s:fmt_curl   .s:fg_green  .s:bg_none   .s:sp_green
-exe "hi! DiffChange"     .s:fmt_curl   .s:fg_yellow .s:bg_none   .s:sp_yellow
+exe "hi! DiffAdd"        .s:fmt_undr   .s:fg_green  .s:bg_none   .s:sp_green
+exe "hi! DiffChange"     .s:fmt_undr   .s:fg_yellow .s:bg_none   .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_none
-exe "hi! DiffText"       .s:fmt_curl   .s:fg_blue   .s:bg_none   .s:sp_blue
+exe "hi! DiffText"       .s:fmt_undr   .s:fg_blue   .s:bg_none   .s:sp_blue
 else " normal
+    if has("gui_running")
 exe "hi! DiffAdd"        .s:fmt_bold   .s:fg_green  .s:bg_base02 .s:sp_green
 exe "hi! DiffChange"     .s:fmt_bold   .s:fg_yellow .s:bg_base02 .s:sp_yellow
 exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_base02
 exe "hi! DiffText"       .s:fmt_bold   .s:fg_blue   .s:bg_base02 .s:sp_blue
+    else
+exe "hi! DiffAdd"        .s:fmt_none   .s:fg_green  .s:bg_base02 .s:sp_green
+exe "hi! DiffChange"     .s:fmt_none   .s:fg_yellow .s:bg_base02 .s:sp_yellow
+exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
+exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
+    endif
 endif
 exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0
 exe "hi! Conceal"        .s:fmt_none   .s:fg_blue   .s:bg_none
@@ -696,15 +701,20 @@ exe "hi! vimHiLink"         .s:fmt_none    .s:fg_blue   .s:bg_none
 exe "hi! vimHiGroup"        .s:fmt_none    .s:fg_blue   .s:bg_none
 exe "hi! vimGroup"          .s:fmt_undb    .s:fg_blue   .s:bg_none
 "}}}
+" diff highlighting "{{{
+" ---------------------------------------------------------------------
+hi! link diffAdded Statement
+hi! link diffLine Identifier
+"}}}
 " html highlighting "{{{
 " ---------------------------------------------------------------------
-exe "hi! htmlTag"        . s:fg_base01 .s:bg_none   .s:fmt_none
-exe "hi! htmlEndTag"     . s:fg_base01 .s:bg_none   .s:fmt_none
-exe "hi! htmlTagN"       . s:fg_base1  .s:bg_none   .s:fmt_bold
-exe "hi! htmlTagName"    . s:fg_blue   .s:bg_none   .s:fmt_bold
-exe "hi! htmlSpecialTagName". s:fg_blue  .s:bg_none .s:fmt_ital
-exe "hi! htmlArg"        . s:fg_base00 .s:bg_none   .s:fmt_none
-exe "hi! javaScript"     . s:fg_yellow .s:bg_none   .s:fmt_none
+exe "hi! htmlTag"           .s:fmt_none .s:fg_base01 .s:bg_none
+exe "hi! htmlEndTag"        .s:fmt_none .s:fg_base01 .s:bg_none
+exe "hi! htmlTagN"          .s:fmt_bold .s:fg_base1  .s:bg_none
+exe "hi! htmlTagName"       .s:fmt_bold .s:fg_blue   .s:bg_none
+exe "hi! htmlSpecialTagName".s:fmt_ital .s:fg_blue   .s:bg_none
+exe "hi! htmlArg"           .s:fmt_none .s:fg_base00 .s:bg_none
+exe "hi! javaScript"        .s:fmt_none .s:fg_yellow .s:bg_none
 "}}}
 " perl highlighting "{{{
 " ---------------------------------------------------------------------
@@ -928,6 +938,24 @@ hi! link pandocMetadataTitle             pandocMetadata
 "
 autocmd GUIEnter * if (s:vmode != "gui") | exe "colorscheme " . g:colors_name | endif
 "}}}
+" Highlight Trailing Space {{{
+" Experimental: Different highlight when on cursorline
+function! s:SolarizedHiTrail()
+    if g:solarized_hitrail==0
+        hi! clear solarizedTrailingSpace
+    else
+        syn match solarizedTrailingSpace "\s*$"
+        exe "hi! solarizedTrailingSpace " .s:fmt_undr .s:fg_red .s:bg_none .s:sp_red
+    endif
+endfunction  
+augroup SolarizedHiTrail
+    autocmd!
+    if g:solarized_hitrail==1
+        autocmd! Syntax * call s:SolarizedHiTrail()
+        autocmd! ColorScheme * if g:colors_name == "solarized" | call s:SolarizedHiTrail() | else | augroup! s:SolarizedHiTrail | endif
+    endif
+augroup END
+" }}}
 " Menus "{{{
 " ---------------------------------------------------------------------
 " Turn off Solarized menu by including the following assignment in your .vimrc:
@@ -955,19 +983,25 @@ if exists("g:loaded_solarized_menu")
 endif
 let g:loaded_solarized_menu = 1
 
-if g:colors_name == "solarized"
+if g:colors_name == "solarized" && g:solarized_menu != 0
 
     amenu &Solarized.&Contrast.&Low\ Contrast        :let g:solarized_contrast="low"       \| colorscheme solarized<CR>
     amenu &Solarized.&Contrast.&Normal\ Contrast     :let g:solarized_contrast="normal"    \| colorscheme solarized<CR>
     amenu &Solarized.&Contrast.&High\ Contrast       :let g:solarized_contrast="high"      \| colorscheme solarized<CR>
+    an    &Solarized.&Contrast.-sep-                 <Nop>
+    amenu &Solarized.&Contrast.&Help:\ Contrast      :help 'solarized_contrast'<CR>
 
     amenu &Solarized.&Visibility.&Low\ Visibility    :let g:solarized_visibility="low"     \| colorscheme solarized<CR>
     amenu &Solarized.&Visibility.&Normal\ Visibility :let g:solarized_visibility="normal"  \| colorscheme solarized<CR>
     amenu &Solarized.&Visibility.&High\ Visibility   :let g:solarized_visibility="high"    \| colorscheme solarized<CR>
+    an    &Solarized.&Visibility.-sep-                 <Nop>
+    amenu &Solarized.&Visibility.&Help:\ Visibility    :help 'solarized_visibility'<CR>
 
     amenu &Solarized.&Background.&Toggle\ Background :ToggleBG<CR>
     amenu &Solarized.&Background.&Dark\ Background   :set background=dark  \| colorscheme solarized<CR>
     amenu &Solarized.&Background.&Light\ Background  :set background=light \| colorscheme solarized<CR>
+    an    &Solarized.&Background.-sep-               <Nop>
+    amenu &Solarized.&Background.&Help:\ ToggleBG     :help togglebg<CR>
 
     if g:solarized_bold==0 | let l:boldswitch="On" | else | let l:boldswitch="Off" | endif
     exe "amenu &Solarized.&Styling.&Turn\\ Bold\\ ".l:boldswitch." :let g:solarized_bold=(abs(g:solarized_bold-1)) \\| colorscheme solarized<CR>"
@@ -980,11 +1014,20 @@ if g:colors_name == "solarized"
     amenu &Solarized.&Diff\ Mode.&Normal\ Diff\ Mode :let g:solarized_diffmode="normal"  \| colorscheme solarized<CR>
     amenu &Solarized.&Diff\ Mode.&High\ Diff\ Mode   :let g:solarized_diffmode="high"    \| colorscheme solarized<CR>
 
+    if g:solarized_hitrail==0 | let l:hitrailswitch="On" | else | let l:hitrailswitch="Off" | endif
+    exe "amenu &Solarized.&Experimental.&Turn\\ Highlight\\ Trailing\\ Spaces\\ ".l:hitrailswitch." :let g:solarized_hitrail=(abs(g:solarized_hitrail-1)) \\| colorscheme solarized<CR>"
+    an    &Solarized.&Experimental.-sep-               <Nop>
+    amenu &Solarized.&Experimental.&Help:\ HiTrail    :help 'solarized_hitrail'<CR>
+
+    an    &Solarized.-sep1-                          <Nop>
+
+    amenu &Solarized.&Autogenerate\ options          :SolarizedOptions<CR>
+
+    an    &Solarized.-sep2-                          <Nop>
+
     amenu &Solarized.&Help.&Solarized\ Help          :help solarized<CR>
     amenu &Solarized.&Help.&Toggle\ Background\ Help :help togglebg<CR>
     amenu &Solarized.&Help.&Removing\ This\ Menu     :help solarized-menu<CR>
-
-    amenu &Solarized.&Autogenerate\ options          :SolarizedOptions<CR>
 
     an 9999.77 &Help.&Solarized\ Colorscheme         :help solarized<CR>
     an 9999.78 &Help.&Toggle\ Background             :help togglebg<CR>
