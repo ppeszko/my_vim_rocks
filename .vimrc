@@ -46,10 +46,6 @@ set hlsearch
 " colorscheme github
 syntax enable
 colorscheme solarized
-" call togglebg#map("<F5>")
-map <Leader>b :set background=dark<CR>
-map <Leader>v :set background=light<CR>
-
 
 " show whitespaces
 if has("gui_running")
