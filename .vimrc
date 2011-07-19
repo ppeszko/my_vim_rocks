@@ -126,7 +126,7 @@ let Tlist_Use_Right_Window = 1
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = '.svn .git tmp .bundle'
 let Grep_Skip_Files = 'tags .tmtags ctags'
-let Grep_Default_Filelist = '*.rb *.erb'
+let Grep_Default_Filelist = '*.rb *.erb *.haml'
 
 " making command-t faster
 set wildignore+=*.o,*.obj,.git
@@ -144,3 +144,8 @@ map <Leader>r :Rgrep<cr>
 map <Leader>e :NERDTreeToggle<cr>
 
 autocmd BufWritePre * :%s/\s\+$//e
+
+"""""""""""""""""""""""""""""
+" Syntasic
+"""""""""""""""""""""""""""""
+let g:syntastic_auto_loc_list=1
