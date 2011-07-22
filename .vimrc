@@ -143,7 +143,10 @@ map <Leader>r :Rgrep<cr>
 """"""""""""""""""""""""""""""
 map <Leader>e :NERDTreeToggle<cr>
 
+" autocomands
 autocmd BufWritePre * :%s/\s\+$//e
+" Auto-close fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 """""""""""""""""""""""""""""
 " Syntasic
