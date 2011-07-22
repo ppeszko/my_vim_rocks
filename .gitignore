@@ -1,2 +1,3 @@
 *.swp
 .netrwhist
+vimdata/tmp
