@@ -10,7 +10,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
-map <leader>y :CommandTFlush<CR>
+"map <leader>y :CommandTFlush<CR>
 map <leader>c :!/Users/comes/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
 
@@ -46,6 +46,10 @@ set hlsearch
 " colorscheme github
 syntax enable
 colorscheme solarized
+" GRB: set the color scheme
+:set t_Co=256 " 256 colors
+:set background=dark
+":color grb256
 
 " show whitespaces
 if has("gui_running")
@@ -63,7 +67,8 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-set history=100		" keep 50 lines of command line history
+set history=1000	" keep 1000 lines of command line history
+set winwidth=120
 set ruler		      " show the cursor position all the time
 set showcmd		    " display incomplete commands
 set incsearch	  	" do incremental searching
@@ -72,20 +77,27 @@ set scrolloff=7   " minimal screen lines above/below cursor
 set cmdheight=2   " use 1 screen lines for command-line
 set lazyredraw    " redraw while executing macros (for qbuf)
 set guifont=Inconsolata:h14
+" highlight current line
+set cursorline
 
 " Numbers
 set number
 " set numberwidth=5
 
+" copy&paste for vim (as in MacVim)
+map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
+
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
-set wildmenu
+set wildmode=longest,list " adds popup menue for cmd completion
 set completeopt=menu
-set wildmode=list:full " adds popup menue for cmd completion
 set complete=.,t
 set ofu=syntaxcomplete#Complete
 
 " set statusline=%f\ %2*%m\ %1*%h%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}\ %{getfperm(@%)}]\ 0x%B\ %12.(%c:%l/%L%)
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:hi Search gui=underline
+:hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
 " case only matters with mixed case expressions
 set ignorecase
