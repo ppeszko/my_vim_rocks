@@ -20,7 +20,7 @@ if !executable("ruby")
 endif
 
 function! SyntaxCheckers_ruby_GetLocList()
-    let makeprg = 'RUBYOPT= /Users/'.$USER.'/.rvm/bin/ruby-1.9.2-p290 -W1 -c '.shellescape(expand('%'))
+    let makeprg = 'RUBYOPT= /Users/'.$USER.'/.rbenv/shims/ruby -W1 -c '.shellescape(expand('%'))
     let errorformat =  '%-GSyntax OK,%E%f:%l: syntax error\, %m,%Z%p^,%W%f:%l: warning: %m,%Z%p^,%-C%.%#'
 
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
