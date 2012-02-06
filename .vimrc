@@ -160,6 +160,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Auto-close fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" trying to fix the problem when auto indentation is lost
+au BufRead * set  autoindent cindent smartindent
+au BufRead * filetype plugin indent on
+
 """""""""""""""""""""""""""""
 " Syntasic
 """""""""""""""""""""""""""""
