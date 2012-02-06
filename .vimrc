@@ -89,10 +89,12 @@ map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
 
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
-set wildmode=longest,list " adds popup menue for cmd completion
-set completeopt=menu
+"set wildmode=longest,list " adds popup menue for cmd completion
+"set completeopt=menu
 set complete=.,w,b,u,t
 set ofu=syntaxcomplete#Complete
+set completeopt=longest,menuone
+set wildmode=list:longest,list:full
 
 " set statusline=%f\ %2*%m\ %1*%h%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}\ %{getfperm(@%)}]\ 0x%B\ %12.(%c:%l/%L%)
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
