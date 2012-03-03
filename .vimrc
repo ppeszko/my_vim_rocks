@@ -10,7 +10,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
-"map <leader>y :CommandTFlush<CR>
+map <leader>g :CommandTFlush<CR>
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
 
