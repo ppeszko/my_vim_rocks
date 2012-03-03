@@ -2,6 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype plugin indent on
+call pathogen#infect()
 
 " mapping
 let mapleader="\\"
@@ -97,7 +98,7 @@ set completeopt=longest,menuone
 set wildmode=list:longest,list:full
 
 " set statusline=%f\ %2*%m\ %1*%h%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}\ %{getfperm(@%)}]\ 0x%B\ %12.(%c:%l/%L%)
-:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+:set statusline=%<%f\ (%{&ft})\ %{fugitive#statusline()}%-4(%m%)%=%-19(%3l,%02c%03V%)
 :hi Search gui=underline
 :hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
