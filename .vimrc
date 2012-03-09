@@ -1,8 +1,8 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+call pathogen#infect()
 set nocompatible
 filetype plugin indent on
-call pathogen#infect()
 
 " mapping
 let mapleader="\\"
@@ -11,6 +11,7 @@ let g:mapleader="\\"
 map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>t :CommandT<CR>
+"map <leader>y :CommandTFlush<CR>
 map <leader>g :CommandTFlush<CR>
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
