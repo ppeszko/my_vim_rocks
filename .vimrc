@@ -12,6 +12,7 @@ map <Leader>h :set invhls <CR>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
+map <leader>t :CtrlPTag<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
@@ -169,3 +170,9 @@ au BufRead * filetype plugin indent on
 " Syntasic
 """""""""""""""""""""""""""""
 let g:syntastic_auto_loc_list=1
+
+"""""""""""""""""""""""""""""
+" CtrlP
+"""""""""""""""""""""""""""""
+let g:ctrlp_extensions = ['tag', 'changes', 'dir', 'undo']
+let g:ctrlp_working_path_mode = 0
