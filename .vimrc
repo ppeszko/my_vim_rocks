@@ -60,6 +60,8 @@ endif
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 nnoremap <Leader>sw :match ExtraWhitespace /\t/<CR>
 nnoremap <Leader>nw :match<CR>
+" Clear the search buffer when hitting return
+:nnoremap <CR> :nohlsearch<cr>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -165,6 +167,23 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " trying to fix the problem when auto indentation is lost
 au BufRead * set  autoindent cindent smartindent
 au BufRead * filetype plugin indent on
+
+"""""""""""""""""""""""""""""
+" autocmds from destroy all software https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
+"""""""""""""""""""""""""""""
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+augroup END
 
 """""""""""""""""""""""""""""
 " Syntasic
