@@ -8,7 +8,7 @@ filetype plugin indent on
 let mapleader="\\"
 let g:mapleader="\\"
 " Hide search highlighting
-map <Leader>h :set invhls <CR>
+:nnoremap <Leader>h :nohlsearch<cr>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
@@ -61,7 +61,6 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 nnoremap <Leader>sw :match ExtraWhitespace /\t/<CR>
 nnoremap <Leader>nw :match<CR>
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
