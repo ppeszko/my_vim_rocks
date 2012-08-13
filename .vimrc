@@ -17,7 +17,7 @@ map <leader>t :CtrlPTag<CR>
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
 set backupdir=$VIMDATA/backup
-set directory=$VIMDATA/tmp
+set directory=/tmp
 
 " NOT WROKING
 " Maps autocomplete to tab
@@ -162,6 +162,9 @@ map <Leader>e :NERDTreeToggle<cr>
 autocmd BufWritePre * :%s/\s\+$//e
 " Auto-close fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" open new file in new buffer rather the in new tab
+autocmd BufWinEnter,BufNewFile * silent tabo
 
 " trying to fix the problem when auto indentation is lost
 au BufRead * set  autoindent cindent smartindent
