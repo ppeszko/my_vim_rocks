@@ -164,7 +164,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " open new file in new buffer rather the in new tab
-autocmd BufWinEnter,BufNewFile * silent tabo
+"autocmd BufWinEnter,BufNewFile * silent tabo
 
 " trying to fix the problem when auto indentation is lost
 au BufRead * set  autoindent cindent smartindent
