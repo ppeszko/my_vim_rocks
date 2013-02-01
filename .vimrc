@@ -153,6 +153,9 @@ if has("macunix") || has("gui_macvim")
 endif
 map <Leader>r :Rgrep<cr>
 
+" copying file path to clipboard
+map <Leader>% :let @* = expand("%")<cr>
+
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
