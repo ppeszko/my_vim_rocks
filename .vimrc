@@ -13,6 +13,7 @@ let g:mapleader="\\"
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>a :TlistToggle<CR>
 map <leader>t :CtrlPTag<CR>
+map <leader>o :only<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
