@@ -78,7 +78,9 @@ set laststatus=2  " Always display the status line
 set scrolloff=7   " minimal screen lines above/below cursor
 set cmdheight=2   " use 1 screen lines for command-line
 set lazyredraw    " redraw while executing macros (for qbuf)
-set guifont=Inconsolata:h14
+"set guifont=Inconsolata:h14
+"set guifont=SourceCodePro-Regular:h14
+set guifont=SourceCodePro-Medium:h14
 " highlight current line
 set cursorline
 
