@@ -48,8 +48,8 @@ set hlsearch
 syntax enable
 colorscheme solarized
 " GRB: set the color scheme
-:set t_Co=256 " 256 colors
-:set background=dark
+set t_Co=256 " 256 colors
+set background=dark
 ":color grb256
 
 " show whitespaces
@@ -69,6 +69,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+set encoding=utf-8
 set history=1000	" keep 1000 lines of command line history
 set winwidth=120
 set ruler		      " show the cursor position all the time
@@ -83,13 +84,31 @@ set lazyredraw    " redraw while executing macros (for qbuf)
 set guifont=SourceCodePro-Medium:h14
 " highlight current line
 set cursorline
+set backspace=indent,eol,start
+" differente coursor shape in insert/visual mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+"" Modern command line
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Delete>
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
+cnoremap <M-d>  <S-right><Delete>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+cnoremap <Esc>d <S-right><Delete>
+cnoremap <C-g>  <C-c>
 
 " Numbers
 set number
 " set numberwidth=5
 
 " copy&paste for vim (as in MacVim)
-map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
+"map <silent> <leader>y :<C-u>silent '<,'>w !pbcopy<CR>
+map <silent> <leader>y "+y
 
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
@@ -101,9 +120,9 @@ set completeopt=longest,menuone
 set wildmode=list:longest,list:full
 
 " set statusline=%f\ %2*%m\ %1*%h%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}\ %{getfperm(@%)}]\ 0x%B\ %12.(%c:%l/%L%)
-:set statusline=%<%f\ (%{&ft})\ %{fugitive#statusline()}%-4(%m%)%=%-19(%3l,%02c%03V%)
-:hi Search gui=underline
-:hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
+"set statusline=%<%f\ (%{&ft})\ %{fugitive#statusline()}%-4(%m%)%=%-19(%3l,%02c%03V%)
+hi Search gui=underline
+hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
 " case only matters with mixed case expressions
 set ignorecase
@@ -162,6 +181,16 @@ map <Leader>% :let @* = expand("%")<cr>
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
+function! ShowFileInNERDTree()
+  if exists("t:NERDTreeBufName")
+    NERDTreeFind
+  else
+    NERDTree
+    wincmd l
+    NERDTreeFind
+  endif
+endfunction
+map <leader>s :call ShowFileInNERDTree()<cr>
 map <Leader>e :NERDTreeToggle<cr>
 
 " autocomands
@@ -217,3 +246,13 @@ function! SearchDash()
   redraw!
 endfunction
 map <leader>d :call SearchDash()<CR>
+
+" airline
+
+let g:airline_enable_branch=1
+let g:airline_enable_syntastic=1
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline_detect_iminsert=1
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
