@@ -49,6 +49,7 @@ syntax enable
 colorscheme solarized
 " GRB: set the color scheme
 set t_Co=256 " 256 colors
+"let g:solarized_termcolors=256      " use solarized 256 fallback
 set background=dark
 ":color grb256
 
