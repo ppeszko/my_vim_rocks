@@ -1,9 +1,19 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-call pathogen#infect()
 set nocompatible
-filetype plugin indent on
 
+" configure Vundle
+filetype on " without this vim emits a zero exit status, later, because of :ft off
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" install Vundle bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+filetype plugin indent on
 " mapping
 let mapleader="\\"
 let g:mapleader="\\"
@@ -11,7 +21,6 @@ let g:mapleader="\\"
 :nnoremap <Leader>h :nohlsearch<cr>
 "map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
-map <leader>a :TlistToggle<CR>
 map <leader>t :CtrlPTag<CR>
 map <leader>o :only<CR>
 
@@ -19,13 +28,6 @@ map <leader>o :only<CR>
 let $VIMDATA  = $HOME.'/.vim/vimdata'
 set backupdir=$VIMDATA/backup
 set directory=/tmp
-
-" NOT WROKING
-" Maps autocomplete to tab
-" imap <Tab> <C-N>
-" Snippets are activated by Shift+Tab
-" let g:snippetsEmu_key = "<S-Tab>"
-
 
 " full screen is working on macvim
 if has("gui_running")
@@ -86,9 +88,6 @@ set guifont=SourceCodePro-Medium:h14
 " highlight current line
 set cursorline
 set backspace=indent,eol,start
-" differente coursor shape in insert/visual mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 "" Modern command line
 cnoremap <C-a>  <Home>
@@ -182,17 +181,25 @@ map <Leader>% :let @* = expand("%")<cr>
 """"""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""
-function! ShowFileInNERDTree()
-  if exists("t:NERDTreeBufName")
-    NERDTreeFind
-  else
-    NERDTree
-    wincmd l
-    NERDTreeFind
-  endif
-endfunction
-map <leader>s :call ShowFileInNERDTree()<cr>
+nmap <leader>f :NERDTreeFind<CR>
 map <Leader>e :NERDTreeToggle<cr>
+
+""""""""""""""""""""""""""""""
+" GitGutter
+""""""""""""""""""""""""""""""
+nmap <leader>g :GitGutterToggle<CR>
+let g:gitgutter_enabled = 0
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --column'
+
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " autocomands
 autocmd BufWritePre * :%s/\s\+$//e
@@ -256,4 +263,16 @@ let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_detect_iminsert=1
 let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
