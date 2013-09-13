@@ -166,6 +166,7 @@ let Grep_Skip_Files = 'tags .tmtags ctags'
 let Grep_Default_Filelist = '*.rb *.erb *.haml'
 
 " making command-t faster
+set wildignore+=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildignore+=*.o,*.obj,.git
 let g:CommandTMaxHeight=15
 
@@ -199,6 +200,7 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  nmap <leader>a :Ag -p .gitignore
 endif
 
 " autocomands
