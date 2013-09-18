@@ -278,3 +278,9 @@ endif
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
+
+" vimux-ruby-test
+let g:vimux_ruby_cmd_unit_test = "z test"
+let g:vimux_ruby_cmd_all_tests = "z test"
+map <leader>zz :RunRubyFocusedTest<CR>
+map <leader>za :RunAllRubyTests<CR>
