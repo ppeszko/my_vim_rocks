@@ -13,6 +13,11 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+" clipboard
+" -----------------------------------------------------------------------------
+" use the system clipboard as the default register
+set clipboard=unnamed,unnamedplus
+
 filetype plugin indent on
 " mapping
 let mapleader="\\"
@@ -20,9 +25,10 @@ let g:mapleader="\\"
 " Hide search highlighting
 :nnoremap <Leader>h :nohlsearch<cr>
 "map <leader>t :FuzzyFinderTextMate<CR>
-map <leader>c :!/Users/comes/.rbenv/shims/ruby -c %<CR>
 map <leader>t :CtrlPTag<CR>
+map <leader>p :CtrlPMixed<CR>
 map <leader>o :only<CR>
+map <leader>c :cclose<CR>
 
 " saving swp files in the tmp directory
 let $VIMDATA  = $HOME.'/.vim/vimdata'
